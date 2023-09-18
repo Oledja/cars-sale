@@ -1,0 +1,11 @@
+.footer {
+	display: grid;
+	/* grid-template-columns: 1fr auto auto; */
+	gap: 40px;
+
+	padding: 10px 15px;
+
+	background: crimson;
+
+	font-size: 14px;
+}

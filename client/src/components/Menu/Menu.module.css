@@ -1,0 +1,14 @@
+.menu {
+	display: grid;
+	background: lightskyblue;
+	grid-template-columns: 1fr;
+	width: 300px;
+	align-content: center;
+
+	
+}
+
+.logo {
+	width: 100px;
+	margin: 10px 15px;
+}

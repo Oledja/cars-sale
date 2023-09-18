@@ -1,0 +1,23 @@
+.header {
+
+	display: grid;
+	grid-template-columns: 1fr;
+	/* grid-template-areas:
+			/* "logo favorite login"; */
+		
+	background: blueviolet;
+		
+	font-size: 14px;
+}
+
+/* .logo {
+	grid-area: logo;
+}
+
+.favotite {
+	grid-area: favorite;
+}
+
+.login {
+	grid-area: login
+} */
