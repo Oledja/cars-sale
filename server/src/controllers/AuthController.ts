@@ -46,4 +46,52 @@ export class AuthController {
             next(error);
         }
     };
+
+    getGoogleAuthUrl = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
+        try {
+            const response = this.authService.getGoogleAuthUrl();
+            res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    googleSignIn = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const code = req.query.code as string;
+            const response = await this.authService.googleSignIn(code);
+            res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    getFacebookAuthUrl = (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const response = this.authService.getFacebookAuthUrl();
+            res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    facebookSignIn = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
+        try {
+            const code = req.query.code as string;
+            const response = await this.authService.facebookSignIn(code);
+            console.log(response);
+
+            res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
 }

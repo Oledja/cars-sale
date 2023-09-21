@@ -10,6 +10,12 @@ declare global {
             COOKIE_MAX_AGE: number;
             JWT_ACCESS_SECRET: string;
             JWT_REFRESH_SECRET: string;
+            GOOGLE_CLIENT_ID: string;
+            GOOGLE_CLIENT_SECRET: string;
+            GOOGLE_REDIRECT_URL: string;
+            FACEBOOK_CLIENT_ID: string;
+            FACEBOOK_CLIENT_SECRET: string;
+            FACEBOOK_REDIRECT_URL: string;
         }
     }
 }

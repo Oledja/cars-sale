@@ -1,5 +1,6 @@
 import { CreateUser } from "../dto";
 import { User } from "../entities/User";
+import { ApiError } from "../exceptions/ApiError";
 import { UserRepository } from "../repositories/UserRepository";
 
 export class UserService {
@@ -9,27 +10,21 @@ export class UserService {
         try {
             const user = await this.userRepository.getUserById(userId);
             if (!user) {
-                throw new Error(`User with id: ${userId} doesn't exists`);
+                throw ApiError.BadRequest(
+                    `User with id: ${userId} doesn't exists`
+                );
             }
             return user;
         } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(error.message);
-            }
             throw error;
         }
     };
 
     getUserByEmail = async (email: User["email"]) => {
         try {
-            const user = await this.userRepository.getUserByEmail(email);
-            if (!user) {
-                throw new Error(`User with email: ${email} doesn't exists`);
-            }
+            return await this.userRepository.getUserByEmail(email);
         } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(error.message);
-            }
+            throw error;
         }
     };
 
@@ -37,9 +32,7 @@ export class UserService {
         try {
             return await this.userRepository.createUser(user);
         } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(error.message);
-            }
+            throw error;
         }
     };
 }
