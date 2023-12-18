@@ -7,15 +7,11 @@ const cookieMaxAge = process.env.COOKIE_MAX_AGE;
 
 export class AuthController {
     private authService = new AuthService();
-    register = async (req: Request, res: Response, next: NextFunction) => {
+    registration = async (req: Request, res: Response, next: NextFunction) => {
         try {
+            const avatar = req.file as Express.Multer.File;
             const user = req.body as CreateUser;
-            const response = await this.authService.register(user);
-            const { refreshToken } = response;
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                maxAge: cookieMaxAge,
-            });
+            const response = await this.authService.registration(user, avatar);
             res.status(200).json(response);
         } catch (error) {
             next(error);
@@ -26,17 +22,10 @@ export class AuthController {
         try {
             const login = req.body as LoginUser;
             const response = await this.authService.login(login);
-            res.status(200).json(response);
-        } catch (error) {
-            next(error);
-        }
-    };
+            const {
+                tokens: { refreshToken },
+            } = response;
 
-    refresh = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const { refreshToken: token } = req.cookies;
-            const response = await this.authService.refresh(token);
-            const { refreshToken } = response;
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
                 maxAge: cookieMaxAge,
@@ -47,14 +36,30 @@ export class AuthController {
         }
     };
 
-    getGoogleAuthUrl = async (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ) => {
+    refreshTokens = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const response = this.authService.getGoogleAuthUrl();
+            const { refreshToken: token } = req.cookies;
+
+            const response = await this.authService.refreshTokens(token);
+            const {
+                tokens: { refreshToken },
+            } = response;
+            res.cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                maxAge: cookieMaxAge,
+            });
             res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    activate = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { link } = req.params;
+            await this.authService.activate(link);
+            res.status(200);
+            res.redirect("http://localhost:3000/auth/login");
         } catch (error) {
             next(error);
         }
@@ -64,16 +69,14 @@ export class AuthController {
         try {
             const code = req.query.code as string;
             const response = await this.authService.googleSignIn(code);
-            res.status(200).json(response);
-        } catch (error) {
-            next(error);
-        }
-    };
-
-    getFacebookAuthUrl = (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const response = this.authService.getFacebookAuthUrl();
-            res.status(200).json(response);
+            const {
+                tokens: { refreshToken },
+            } = response;
+            res.cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                maxAge: cookieMaxAge,
+            });
+            res.redirect("http://localhost:3000");
         } catch (error) {
             next(error);
         }
@@ -87,9 +90,26 @@ export class AuthController {
         try {
             const code = req.query.code as string;
             const response = await this.authService.facebookSignIn(code);
-            console.log(response);
+            const {
+                tokens: { refreshToken },
+            } = response;
+            res.cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                maxAge: cookieMaxAge,
+            });
+            res.redirect("http://localhost:3000");
+        } catch (error) {
+            next(error);
+        }
+    };
 
-            res.status(200).json(response);
+    logout = (req: Request, res: Response, next: NextFunction) => {
+        try {
+            res.cookie("refreshToken", "", {
+                httpOnly: true,
+                maxAge: cookieMaxAge,
+            });
+            res.status(200).end();
         } catch (error) {
             next(error);
         }

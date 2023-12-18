@@ -5,4 +5,6 @@ export type CreateUser = {
     password: string;
     phone: string;
     city: string;
+    avatarPath?: string;
+    activationLink?: string;
 };

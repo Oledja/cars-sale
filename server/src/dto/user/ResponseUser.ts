@@ -1,5 +1,4 @@
 import { User } from "../../entities/User";
-import { Tokens } from "../../interfaces/Tokens";
 
 export class ResponseUser {
     id: string;
@@ -23,6 +22,8 @@ export class ResponseUser {
 
 export type AuthResponse = {
     user: ResponseUser;
-    accessToken: string;
-    refreshToken: string;
+    tokens: {
+        accessToken: string;
+        refreshToken: string;
+    };
 };

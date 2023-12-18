@@ -1,10 +1,7 @@
-import "../styles/globals.css"
-import { withLayout } from "../Layout/Layout"
-
-function Home(): JSX.Element {
+export default function Home() {
   return (
-       <div>Home</div>
+    <>
+      Home
+    </>    
   )
 }
-
-export default withLayout(Home)

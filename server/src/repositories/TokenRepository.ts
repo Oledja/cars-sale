@@ -6,10 +6,8 @@ export class TokenRepository {
     private db = dataSource.getRepository(Token);
 
     getTokenByUserId = async (userId: User["id"]): Promise<Token> => {
-        const [token] = await this.db.findBy({ user: { id: userId } });
-        console.log(token);
-
-        return token;
+        const [result] = await this.db.findBy({ user: { id: userId } });
+        return result;
     };
 
     getToken = async (refreshToken: string): Promise<Token | null> => {

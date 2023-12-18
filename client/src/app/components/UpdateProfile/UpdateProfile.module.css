@@ -1,0 +1,149 @@
+.form {
+	margin: 30px auto;
+	height: 480px;
+	width: 450px;
+	padding: 32px;
+	border-radius: 10px;
+	box-shadow: 0 4px 16px #ccc;
+}
+
+.formTitle {
+	font-size: 18px;
+	text-align: center;
+}
+
+.formGroup {
+	position: relative;
+	margin-bottom: 32px;
+}
+
+.formGroups {
+	display: flex;
+	justify-content: space-between;
+}
+
+.formLabel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #9E9E9E;
+	transition: 0.6s;
+}
+
+.formInput {
+	width: 100%;
+	padding: 0 0 10px 0;
+	border: none;
+	border-bottom: 1px solid #E0E0E0;
+	background-color: transparent;
+}
+
+.formInput:focus {
+	border-bottom: 1px solid #1A73A8;
+}
+
+.formButton {
+	margin-top: 10px;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	color: #FFF;
+	background-color: #000;
+	outline: none;
+	cursor: pointer;
+	transition: 0.3s;
+	width: 100%
+}
+
+.formButton:disabled {
+	background: #847c7b;
+	cursor: no-drop;
+}
+
+.formButton:focus,
+.formButton:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.formInput:focus~.formLabel,
+.formInput:not(:placeholder-shown)~.formLabel {
+	top: -18px;
+	font-size: 12px;
+	color: #E0E0e0;
+}
+
+.backTitle {
+	margin-top: 15px;
+	text-align: center
+}
+
+.backLink:hover {
+	color: #000;
+}
+
+.error {
+	color: red;
+	font-size: 10px;
+	text-align: center;
+}
+
+.errorMessages {
+	position: absolute;
+	width: 100%;
+}
+
+.regestrationError {
+	text-align: center;
+	margin: 4px 0 16px 0;
+	color: red;
+	height: 12px;
+	margin-bottom: 30px;
+	font-size: 12px;
+}
+
+.upload {
+	width: 100px;
+	position: relative;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.upload img {
+	border-radius: 50%;
+	border: 6px solid #EAEAEA;
+}
+
+.upload .round {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	/* background: #00B4FF; */
+	background: lightgreen;
+	width: 32px;
+	border-radius: 50%;
+	height: 32px;
+	line-height: 33px;
+	text-align: center;
+	overflow: hidden;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+	cursor: pointer;
+}
+
+.upload .round input[type="file"] {
+	position: absolute;
+	transform: scale(3);
+	opacity: 0;
+}
+
+.deleteButton {
+	cursor: pointer;
+	position: absolute;
+	width: 32px;
+	border-radius: 50%;
+	background: lightcoral;
+	height: 32px;
+	left: 0;
+}
+

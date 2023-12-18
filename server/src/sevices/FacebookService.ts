@@ -7,20 +7,6 @@ const secret = process.env.FACEBOOK_CLIENT_SECRET;
 const redirectUrl = process.env.FACEBOOK_REDIRECT_URL;
 
 export class FacebookService {
-    getAuthorizeUrl = (): string => {
-        const params = new URLSearchParams([
-            ["client_id", clientId],
-            ["redirect_uri", redirectUrl],
-            ["scope", "email"],
-            ["response_type", "code"],
-            ["auth_type", "rerequest"],
-        ]).toString();
-
-        const authorizeUrl = `https://www.facebook.com/v18.0/dialog/oauth?${params}`;
-
-        return authorizeUrl;
-    };
-
     getEmailByCode = async (code: string): Promise<string> => {
         try {
             const {

@@ -1,9 +1,6 @@
-import { withLayout } from "../../Layout/Layout"
-
-function Favorite(): JSX.Element {
-  return (
-       <div>Favorite</div>
-  )
+export default function Favorite(): JSX.Element {
+	return (
+		<>favorite
+		</>
+	)
 }
-
-export default withLayout(Favorite)

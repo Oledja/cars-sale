@@ -3,7 +3,6 @@ import { User } from "../entities/User";
 import { Tokens } from "../interfaces/Tokens";
 import { TokenRepository } from "../repositories/TokenRepository";
 import { Token } from "../entities/Token";
-import { ResponseUser } from "../dto/user/ResponseUser";
 import { PayloadUser } from "../dto/user/PayloadUser";
 
 const accessSecret = process.env.JWT_ACCESS_SECRET;
@@ -15,7 +14,7 @@ export class TokenService {
     generateTokens = async (payload: PayloadUser): Promise<Tokens> => {
         try {
             const accessToken = jwt.sign(payload, accessSecret, {
-                expiresIn: "30m",
+                expiresIn: "1m",
             });
 
             const refreshToken = jwt.sign(payload, refreshSecret, {
@@ -47,6 +46,14 @@ export class TokenService {
     findToken = async (refreshToken: string): Promise<Token | null> => {
         try {
             return await this.tokenRepository.getToken(refreshToken);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    findTokenByUserId = async (userId: User["id"]) => {
+        try {
+            return await this.tokenRepository.getTokenByUserId(userId);
         } catch (error) {
             throw error;
         }

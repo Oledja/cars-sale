@@ -15,11 +15,16 @@ export class UserRepository {
         return user;
     };
 
+    getUserByActivationLink = async (activationLink: string) => {
+        const user = await this.db.findOne({ where: { activationLink } });
+        return user;
+    };
+
     createUser = async (user: CreateUser) => {
         return await this.db.save(user);
     };
 
-    updateUser = async (id: User["id"], update: UpdateUser) => {
+    updateUser = async (id: User["id"], update: User) => {
         return await this.db.update(id, update);
     };
 }

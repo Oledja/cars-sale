@@ -24,6 +24,9 @@ export class User extends BaseEntity {
     @Column({ name: "avatarPath", type: "varchar", nullable: true })
     avatarPath: string;
 
-    @Column({ name: "refreshToken", type: "varchar", nullable: true })
-    refreshToken: string;
+    @Column({ name: "isActivated", type: "boolean", default: "false" })
+    isActivated: boolean;
+
+    @Column({ name: "activationLink", type: "varchar" })
+    activationLink: string;
 }

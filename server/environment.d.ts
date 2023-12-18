@@ -7,6 +7,7 @@ declare global {
             DB_NAME: string;
             DB_PORT: number;
             APP_PORT: number;
+            APP_URL: string;
             COOKIE_MAX_AGE: number;
             JWT_ACCESS_SECRET: string;
             JWT_REFRESH_SECRET: string;
@@ -16,6 +17,10 @@ declare global {
             FACEBOOK_CLIENT_ID: string;
             FACEBOOK_CLIENT_SECRET: string;
             FACEBOOK_REDIRECT_URL: string;
+            SMTP_HOST: string;
+            SMTP_PORT: number;
+            SMTP_USER: string;
+            SMTP_PASSWORD: string;
         }
     }
 }

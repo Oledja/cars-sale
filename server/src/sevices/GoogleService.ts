@@ -8,17 +8,6 @@ const redirectUrl = process.env.GOOGLE_REDIRECT_URL;
 export class GoogleService {
     private oAuth2Client = new OAuth2Client(clientId, secret, redirectUrl);
 
-    getAuthorizeUrl = (): string => {
-        const authorizeUrl = this.oAuth2Client.generateAuthUrl({
-            access_type: "offline",
-            redirect_uri: redirectUrl,
-            response_type: "code",
-            scope: ["email"],
-        });
-
-        return authorizeUrl;
-    };
-
     getEmailByCode = async (code: string): Promise<string> => {
         try {
             const {

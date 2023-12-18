@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Blaka+Ink&family=Dancing+Script:wght@600&family=Foldit:wght@600&family=Noto+Sans:wght@400;500;700;900&family=Open+Sans:wght@300&family=Orbitron:wght@500;600&display=swap');
+
+.container {
+	max-width: 1220px;
+	padding: 0-10px;
+	margin: 0 auto;
+}
+
+.header {
+	border-bottom: 1px solid #000;
+}
+
+.menu {
+	display: flex;
+	font-size: 18px;
+	gap: 0 20px;
+}
+
+.title {
+	font-family: 'Foldit', cursive;
+	font-size: 30px;
+	text-align: left;
+	padding-left: 15px;
+	width: 200px;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+}
+
+
+

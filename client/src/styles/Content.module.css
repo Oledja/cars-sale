@@ -1,0 +1,7 @@
+.content {
+	max-width: 1220px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: 36px calc(100vh - 30px);
+}
+
